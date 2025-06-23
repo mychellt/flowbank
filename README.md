@@ -40,8 +40,8 @@ A Spring Boot-based banking application for managing accounts and transactions.
 ### Build and Run
 
 ```bash
-mvn clean install
-mvn spring-boot:run
+  mvn clean install
+  mvn spring-boot:run
 ```
 
 ### Running with Docker
@@ -49,7 +49,7 @@ mvn spring-boot:run
 You can use Docker Compose to start the application and a PostgreSQL database:
 
 ```bash
-docker-compose up --build
+  docker-compose up --build
 ```
 
 ### API Documentation
@@ -73,10 +73,31 @@ Flyway is used for database migrations. Migration scripts are located in `src/ma
 Run all tests with:
 
 ```bash
-mvn test
+  mvn test
 ```
 
 ## License
 
 This project is licensed under the MIT License.
 
+
+
+## 🚀 Getting Started with the run.sh script
+
+### ✅ Prerequisites
+- Ensure you have **Docker** and **Docker Compose** installed.
+- Make sure `.env` is configured correctly (see example in the `.env` section).
+
+### 🔥 Usage
+Make the script executable:
+```bash
+  chmod +x run.sh
+```
+Run the script to build and launch the services:
+```bash
+  ./run.sh
+```
+
+### 🐳 Services
+- **App**: http://localhost:8080/swagger-ui/index.html
+- **Database**: http://localhost:5432
