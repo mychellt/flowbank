@@ -1,4 +1,4 @@
-package br.pismo.techcase.flowbank.adapters.out.persistence;
+package br.pismo.techcase.flowbank.adapters.out.persistence.jpa;
 
 import br.pismo.techcase.flowbank.infrastructure.persistence.model.AccountEntity;
 import java.util.Optional;

@@ -1,5 +1,6 @@
 package br.pismo.techcase.flowbank.adapters.out.persistence;
 
+import br.pismo.techcase.flowbank.adapters.out.persistence.jpa.OperationTypeRepository;
 import br.pismo.techcase.flowbank.domain.model.OperationType;
 import br.pismo.techcase.flowbank.domain.ports.out.OperationTypePersistencePort;
 import java.util.Optional;

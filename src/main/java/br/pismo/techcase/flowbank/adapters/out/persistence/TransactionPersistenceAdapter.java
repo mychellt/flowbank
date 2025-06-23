@@ -4,6 +4,9 @@ import static java.util.Objects.nonNull;
 import static java.util.Optional.of;
 
 import br.pismo.techcase.flowbank.adapters.out.mappers.TransactionMapper;
+import br.pismo.techcase.flowbank.adapters.out.persistence.jpa.AccountRepository;
+import br.pismo.techcase.flowbank.adapters.out.persistence.jpa.OperationTypeRepository;
+import br.pismo.techcase.flowbank.adapters.out.persistence.jpa.TransactionRepository;
 import br.pismo.techcase.flowbank.domain.exceptions.AccountNotFoundException;
 import br.pismo.techcase.flowbank.domain.model.OperationType;
 import br.pismo.techcase.flowbank.domain.model.Transaction;

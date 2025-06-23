@@ -3,6 +3,7 @@ package br.pismo.techcase.flowbank.adapters.out.persistence;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+import br.pismo.techcase.flowbank.adapters.out.persistence.jpa.OperationTypeRepository;
 import br.pismo.techcase.flowbank.infrastructure.persistence.model.OperationTypeEntity;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;

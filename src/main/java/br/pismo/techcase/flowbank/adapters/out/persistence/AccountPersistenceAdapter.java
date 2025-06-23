@@ -3,6 +3,7 @@ package br.pismo.techcase.flowbank.adapters.out.persistence;
 import static java.util.Optional.of;
 
 import br.pismo.techcase.flowbank.adapters.out.mappers.AccountMapper;
+import br.pismo.techcase.flowbank.adapters.out.persistence.jpa.AccountRepository;
 import br.pismo.techcase.flowbank.domain.model.Account;
 import br.pismo.techcase.flowbank.domain.ports.out.AccountPersistencePort;
 import java.util.Optional;

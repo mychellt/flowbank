@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 
 import br.pismo.techcase.flowbank.adapters.out.mappers.AccountMapper;
+import br.pismo.techcase.flowbank.adapters.out.persistence.jpa.AccountRepository;
 import br.pismo.techcase.flowbank.domain.model.Account;
 import br.pismo.techcase.flowbank.infrastructure.persistence.model.AccountEntity;
 import java.util.Optional;
