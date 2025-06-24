@@ -3,6 +3,7 @@ package br.pismo.techcase.flowbank.application.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 import br.pismo.techcase.flowbank.domain.model.Account;
@@ -15,11 +16,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -61,6 +64,34 @@ class TransactionServiceTest {
         var result = transactionService.createTransaction(transaction);
         assertThat(result).isNotNull();
         assertThat(result.getId()).isEqualTo(transaction.getId());
+    }
+
+    @DisplayName(value = "Given a transaction, createTransaction throws IllegalArgumentException when transaction is null")
+    @Test
+    void validNoLimit() {
+        var account = Account.builder()
+            .availableCreditLimit(BigDecimal.valueOf(100))
+            .id(UUID.randomUUID())
+            .documentNumber("19090")
+            .build();
+
+        var transaction = Transaction.builder()
+            .id(UUID.randomUUID())
+            .amount(BigDecimal.valueOf(101))
+            .operationType(OperationType.PURCHASE_WITH_INSTALLMENTS)
+            .eventDate(LocalDateTime.now())
+            .account(account)
+            .build();
+
+        when(accountPersistencePort.findById(any(UUID.class))).thenReturn(Optional.of(account));
+
+       lenient().when(transactionPersistencePort.save(any(Transaction.class))).thenReturn(transaction);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            transactionService.createTransaction(transaction);
+        });
+
+        Assertions.assertEquals(new BigDecimal(100), account.getAvailableCreditLimit());
     }
 
     @Test
