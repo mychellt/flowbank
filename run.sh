@@ -36,6 +36,7 @@ docker compose up -d
 # ==========================================================
 echo "🌟 Services started successfully!"
 echo "👉 App available at http://localhost:${SPRING_SERVER_PORT}/swagger-ui/index.html"
+echo "👉 Actuator Console at http://localhost:${SPRING_SERVER_PORT}/actuator"
 echo "👉 Database available at ${SPRING_DATASOURCE_HOST}:${SPRING_DATASOURCE_PORT}"
 echo
 echo "💡 To view logs: docker compose logs -f"
