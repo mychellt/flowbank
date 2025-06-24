@@ -1,5 +1,6 @@
 package br.pismo.techcase.flowbank.domain.model;
 
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,4 +14,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Account extends AbstractDomain{
     private String documentNumber;
+    private BigDecimal availableCreditLimit;
 }

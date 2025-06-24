@@ -5,12 +5,15 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
+import br.pismo.techcase.flowbank.domain.model.Account;
 import br.pismo.techcase.flowbank.domain.model.OperationType;
 import br.pismo.techcase.flowbank.domain.model.Transaction;
+import br.pismo.techcase.flowbank.domain.ports.out.AccountPersistencePort;
 import br.pismo.techcase.flowbank.domain.ports.out.TransactionPersistencePort;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,6 +30,9 @@ class TransactionServiceTest {
     @Mock
     private TransactionPersistencePort transactionPersistencePort;
 
+    @Mock
+    private AccountPersistencePort accountPersistencePort;
+
     @InjectMocks
     private TransactionService transactionService;
 
@@ -34,12 +40,23 @@ class TransactionServiceTest {
     @Test
     @DisplayName(value = "Given a transaction, createTransaction returns saved transaction")
     void createTransactionReturnsSavedTransaction() {
+
+        var account = Account.builder()
+            .availableCreditLimit(BigDecimal.valueOf(100))
+            .id(UUID.randomUUID())
+            .documentNumber("19090")
+            .build();
+
         var transaction = Transaction.builder()
                 .id(UUID.randomUUID())
                 .amount(BigDecimal.valueOf(100))
                 .operationType(OperationType.PURCHASE_WITH_INSTALLMENTS)
                 .eventDate(LocalDateTime.now())
+                .account(account)
                 .build();
+
+        when(accountPersistencePort.findById(any(UUID.class))).thenReturn(Optional.of(account));
+
         when(transactionPersistencePort.save(any(Transaction.class))).thenReturn(transaction);
         var result = transactionService.createTransaction(transaction);
         assertThat(result).isNotNull();

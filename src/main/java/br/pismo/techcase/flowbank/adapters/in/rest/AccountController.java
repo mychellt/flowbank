@@ -83,6 +83,7 @@ public class AccountController {
             .orElseThrow(AccountNotFoundException::new);
 
         return ResponseEntity.ok(AccountResponse.builder()
+            .availableCreditLimit(account.getAvailableCreditLimit().toEngineeringString())
             .documentNumber(account.getDocumentNumber())
             .id(account.getId().toString())
             .build());

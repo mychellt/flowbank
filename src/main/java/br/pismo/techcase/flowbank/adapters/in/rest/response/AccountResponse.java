@@ -9,6 +9,9 @@ public record AccountResponse(
     String id,
 
     @JsonProperty(value = "document_number")
-    String documentNumber
+    String documentNumber,
+
+    @JsonProperty(value = "available_credit_limit")
+    String availableCreditLimit
 ) {
 }

@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,9 @@ public class AccountEntity extends AbstractEntity {
 
     @Column(nullable = false, unique = true, name = "document_number")
     private String documentNumber;
+
+    @Column(name = "available_credit_limit", nullable = false)
+    private BigDecimal availableCreditLimit;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TransactionEntity> transactions;
